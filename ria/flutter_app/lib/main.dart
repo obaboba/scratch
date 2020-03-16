@@ -14,20 +14,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Startup Name Generator',
       theme: ThemeData(
-        primaryColor: Colors.pink[50],
+          primaryColor: Colors.pink[50],
           primaryTextTheme: TextTheme(
               title: TextStyle(
                   color: Colors.black
               )
           )
       ),
-      home: FirstRoute(),
+      home: Front(),
     );
   }
   final _formKey = GlobalKey<FormState>();
 
 }
 
+//Scrolling List Screen
 class RandomWordsState extends State<RandomWords> {
   @override
   final _suggestions = <WordPair>[];
@@ -122,7 +123,7 @@ class RandomWordsState extends State<RandomWords> {
           }
           return Container(
             color: Colors.white,
-              child: _buildRow(_suggestions[index]),
+            child: _buildRow(_suggestions[index]),
           );
         });
   }
@@ -139,13 +140,17 @@ class RandomWordsState extends State<RandomWords> {
   }
 }
 
+
 class RandomWords extends StatefulWidget {
   @override
   RandomWordsState createState() => RandomWordsState();
 }
 
+//Login Screen
 class FirstRoute extends StatelessWidget {
   @override
+  final _formKey = GlobalKey<FormState>();
+  //static GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -153,71 +158,115 @@ class FirstRoute extends StatelessWidget {
         title: Text('Log In/Create an Account'),
       ),*/
       body: Center(
-        child: new Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Container(
-            child: Form(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        //Text('L', style: TextStyle(fontSize: 100.0, fontWeight: FontWeight.bold, color: Colors.brown[800]) ),
-                        Padding(
-                          //padding: const EdgeInsets.only(top: 20.0),
-                          child: new Image.asset('assets/smaller_oba.jpg', height: 60.5, width: 60.5,),
-                        ),
-                        //Text('gin', style: TextStyle(fontSize: 100.0, fontWeight: FontWeight.bold, color: Colors.brown[800]) ),
-                      ],
-                    ),
-                    Container(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 50.0),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: TextFormField(
-                              decoration: const InputDecoration(
-                                hintText: 'Enter your phone number',
-                              )
-                          ),
-                        )
+          child: new Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                  child: Form(
+                      key: _formKey,
+                      child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  //Text('L', style: TextStyle(fontSize: 100.0, fontWeight: FontWeight.bold, color: Colors.brown[800]) ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    //padding: const EdgeInsets.only(top: 20.0),
+                                    child: new Image.asset('assets/oba.png', height: 125.5, width: 125.5,),
+                                  ),
+                                  //Text('gin', style: TextStyle(fontSize: 100.0, fontWeight: FontWeight.bold, color: Colors.brown[800]) ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  TextFormField(
+                                    decoration: const InputDecoration(
+                                      hintText: 'Enter your phone number',
+                                    ),
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'Please enter some text';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                    child: RaisedButton(
+                                      color: Colors.pink[50],
+                                      onPressed: () {
+                                        // Validate will return true if the form is valid, or false if
+                                        // the form is invalid.
+                                        if (_formKey.currentState.validate()) {
+                                          // Process data.
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(builder: (context) => SecondRoute()),
+                                          );
+                                        }
+                                      },
+                                      child: Text('Submit'),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              /*Container(
+                                  child: Padding(
+                                      padding: const EdgeInsets.only(top: 50.0),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                        child: TextFormField(
+                                          decoration: const InputDecoration(
+                                            hintText: 'Enter your phone number',
+                                          ),
+                                          validator: (value) {
+                                            if (value.isEmpty) {
+                                              return 'Please enter some text';
+                                            }
+                                            return null;
+                                          },
+                                        ),
+                                      )
+                                  )
+                              ),
+                              Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                                  child: RaisedButton(
+                                    color: Colors.pink[50],
+                                    child: Text('Submit'),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => SecondRoute()),
+                                      );// Navigate to second route when tapped.
+                                    },
+                                  )
+                              )*/
+                              /**/
+                            ],
+                          )
                       )
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: RaisedButton(
-                          color: Colors.pink[50],
-                          child: Text('Submit'),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => SecondRoute()),
-                            );// Navigate to second route when tapped.
-                          },
-                        )
-                    )
-                    /**/
-                  ],
-                )
-              )
-            )
-            /*Text('Open route'),
+                  )
+                /*Text('Open route'),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => SecondRoute()),
               );// Navigate to second route when tapped.
             },*/
-        )
-        )
+              )
+          )
       ),
     );
   }
 }
 
+//Second Route "Go Back!" Screen
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -233,6 +282,43 @@ class SecondRoute extends StatelessWidget {
           child: Text('Go back!'),
         ),
       ),
+    );
+  }
+}
+
+//Front Loading Screen
+class Front extends StatelessWidget {
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    new Image.asset('assets/oba.png', height: 135.0, width: 135.0),
+                    Text('BA', style: TextStyle(fontSize: 160.0, fontWeight: FontWeight.bold, color: Colors.brown[700])),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: RaisedButton(
+                    color: Colors.pink[50],
+                    child: Text('Create Account/Log In'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FirstRoute()),
+                      );// Navigate to second route when tapped.
+                    },
+                  ),
+                )
+              ],
+            )
+        )
     );
   }
 }
