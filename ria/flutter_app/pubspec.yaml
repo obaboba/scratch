@@ -31,6 +31,9 @@ flutter:
     - assets/oba.png
     - assets/smaller_oba.jpg
     - assets/oba100.png
+    - assets/oba_pink.png
+    - assets/boba_banner.png
+    - assets/boba_pic.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

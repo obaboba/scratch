@@ -7,6 +7,7 @@ import 'package:english_words/english_words.dart';
 
 void main() => runApp(MyApp());
 //var likes = {};
+var x = '';
 
 class MyApp extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Startup Name Generator',
       theme: ThemeData(
-          primaryColor: Colors.pink[50],
+          primaryColor: Colors.white,
           primaryTextTheme: TextTheme(
               title: TextStyle(
                   color: Colors.black
@@ -46,6 +47,13 @@ class RandomWordsState extends State<RandomWords> {
           },
           child: Text('Go back!'),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.pink[50],
       ),
     );
   }
@@ -80,40 +88,75 @@ class RandomWordsState extends State<RandomWords> {
       ),
     );
   }
-  Widget _buildRow(WordPair pair) {
-    final bool alreadySaved = _saved.contains(pair);
-    //var x = pair.asPascalCase;
-    //likes[x] = 0;
+  Widget _buildRow() {
     return ListTile(
-      title: Text(
-        pair.asPascalCase, //x,
-        style: _biggerFont,
+      //leading: Image.asset('assets/oba100.png', height: 40.0, width: 40.0),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Image.asset('assets/oba100.png', height: 40.0, width: 40.0),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0),
+                child: Text('username', style: TextStyle(fontWeight: FontWeight.bold),),
+              )
+            ],
+          ),
+          //Text('T-Pumps'),
+          Row(
+            children: <Widget>[
+              Icon(
+                IconData(58719, fontFamily: 'MaterialIcons'),
+              ),
+              Text('location', style: TextStyle(fontStyle: FontStyle.italic),)
+            ],
+          ),
+          Text("blah, blah, blah. I don't want to type a long review. This is annoying. Does this look like yelp?"),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Image.asset('assets/boba_pic.jpeg')
+          ),
+        ],
       ),
       onTap: () {
         setState(() {
-          if (alreadySaved) {
+          /*if (alreadySaved) {
             _saved.remove(pair);
             //likes[x] --;
           } else {
             _saved.add(pair);
             //likes[x] ++;
-          }
+          }*/
         });
       },
-      trailing: Column(
+      /*trailing: Column(
         children: <Widget>[
           Icon(
               alreadySaved ? Icons.favorite : Icons.favorite_border,
-              color: alreadySaved ? Colors.pink[100] : null
+              color: alreadySaved ? Colors.pink[100] : null,
           ),
-          //Text(likes[x].toString())
+          //Text(x[0])
         ],
-      ),
+      ),*/
     );
   }
   Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(8.0),
+    return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SecondRoute()),
+            );// Add your onPressed code here!
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.pink[50],
+          foregroundColor: Colors.white,
+        ),
+        body: Center(
+        child: ListView.builder(
+      padding: const EdgeInsets.all(8.0),
         itemBuilder: /*1*/ (context, i) {
           if (i.isOdd) return Divider(); /*2*/
 
@@ -123,17 +166,27 @@ class RandomWordsState extends State<RandomWords> {
           }
           return Container(
             color: Colors.white,
-            child: _buildRow(_suggestions[index]),
+            child: _buildRow(),
           );
-        });
+        })
+      )
+    );
   }
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Startup Name Generator'),
-        actions: <Widget>[
+        leading: Text(''),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 80.0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15.0),
+            child: Image.asset('assets/oba_pink.png'),
+          ),
+        ),
+        //title: Text(x),
+        /*actions: <Widget>[
           IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
-        ],
+        ],*/
       ),
       body: _buildSuggestions(),
     );
@@ -149,7 +202,7 @@ class RandomWords extends StatefulWidget {
 //Login Screen
 class FirstRoute extends StatelessWidget {
   @override
-  final _formKey = GlobalKey<FormState>();
+  static final _formKey = GlobalKey<FormState>();
   //static GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   Widget build(BuildContext context) {
     return Scaffold(
@@ -175,7 +228,7 @@ class FirstRoute extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
                                     //padding: const EdgeInsets.only(top: 20.0),
-                                    child: new Image.asset('assets/oba.png', height: 125.5, width: 125.5,),
+                                    child: new Image.asset('assets/boba_banner.png', height: 150.0, width: 300.0,),
                                   ),
                                   //Text('gin', style: TextStyle(fontSize: 100.0, fontWeight: FontWeight.bold, color: Colors.brown[800]) ),
                                 ],
@@ -204,9 +257,10 @@ class FirstRoute extends StatelessWidget {
                                         // the form is invalid.
                                         if (_formKey.currentState.validate()) {
                                           // Process data.
+                                          //x = _formKey.currentState.toString();
                                           Navigator.push(
                                             context,
-                                            MaterialPageRoute(builder: (context) => SecondRoute()),
+                                            MaterialPageRoute(builder: (context) => RandomWords()),
                                           );
                                         }
                                       },
@@ -299,8 +353,8 @@ class Front extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new Image.asset('assets/oba.png', height: 135.0, width: 135.0),
-                    Text('BA', style: TextStyle(fontSize: 160.0, fontWeight: FontWeight.bold, color: Colors.brown[700])),
+                    new Image.asset('assets/oba_pink.png', height: 135.0, width: 300.0),
+                    //Text('BA', style: TextStyle(fontSize: 160.0, fontWeight: FontWeight.bold, color: Colors.brown[700])),
                   ],
                 ),
                 Padding(
