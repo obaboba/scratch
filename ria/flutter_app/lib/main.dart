@@ -94,28 +94,52 @@ class RandomWordsState extends State<RandomWords> {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
+          Column(
             children: <Widget>[
-              Image.asset('assets/oba100.png', height: 40.0, width: 40.0),
+              Image.asset('assets/boba_rating.png', height: 100.0, width: 100.0),
               Padding(
-                padding: const EdgeInsets.only(left: 10.0),
+                padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text('username', style: TextStyle(fontWeight: FontWeight.bold),),
               )
             ],
           ),
-          //Text('T-Pumps'),
           Row(
             children: <Widget>[
-              Icon(
-                IconData(58719, fontFamily: 'MaterialIcons'),
+              Padding(
+                  padding: const EdgeInsets.only(top: 0.0),
+                  child: Image.asset('assets/boba_pic.jpeg')
               ),
-              Text('location', style: TextStyle(fontStyle: FontStyle.italic),)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        Icon(
+                          IconData(58719, fontFamily: 'MaterialIcons'),
+                        ),
+                        Text('location', style: TextStyle(fontStyle: FontStyle.italic),)
+                      ],
+                    ),
+                  ),
+                  Container(
+                    constraints: BoxConstraints(maxHeight: 400.0, maxWidth: 161.0),
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Text("blah, blah, blah. I don't want to type a long review. This is annoying. Does this look like yelp? I know the order does not match the pic at all"),
+                  ),
+                  Container(
+                    constraints: BoxConstraints(maxHeight: 400.0, maxWidth: 161.0),
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 5.0),
+                      child: Text("My Order: Strawberry Tea"),
+                    ),
+                  ),
+                ],
+              ),
             ],
-          ),
-          Text("blah, blah, blah. I don't want to type a long review. This is annoying. Does this look like yelp?"),
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Image.asset('assets/boba_pic.jpeg')
           ),
         ],
       ),
@@ -325,17 +349,86 @@ class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(IconData(58362, fontFamily: 'MaterialIcons'),
+                    color: Colors.black26,
+              ),
+                onPressed: (){
+                },
+              ),
+              IconButton(
+                icon: Icon(IconData(58362, fontFamily: 'MaterialIcons'),
+                  color: Colors.brown[700],
+                ),
+                onPressed: (){
+                },
+              ),
+              IconButton(
+                icon: Icon(IconData(58362, fontFamily: 'MaterialIcons'),
+                  color: Colors.brown[700],
+                ),
+                onPressed: (){
+                },
+              ),
+              IconButton(
+                icon: Icon(IconData(58362, fontFamily: 'MaterialIcons'),
+                  color: Colors.brown[700],
+                ),
+                onPressed: (){
+                },
+              ),
+              IconButton(
+                icon: Icon(IconData(58362, fontFamily: 'MaterialIcons'),
+                  color: Colors.brown[700],
+                ),
+                onPressed: (){
+                },
+              ),
+            ],
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: 'Type the name of the boba shop here',
+                  border: InputBorder.none,
+                ),
+              )
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: 'Type your order here',
+                  border: InputBorder.none,
+                ),
+              )
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  hintText: 'Type your review here',
+                border: InputBorder.none,
+              ),
+            )
+          )
+        ],
       ),
-      body: Center(
+      /*Center(
         child: RaisedButton(
           onPressed: () {
             Navigator.pop(context);// Navigate back to first route when tapped.
           },
           child: Text('Go back!'),
         ),
-      ),
+      ),*/
     );
   }
 }
