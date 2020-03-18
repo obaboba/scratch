@@ -21,13 +21,16 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+
         theme: new ThemeData(
             primarySwatch: Colors.blue,
-            primaryColor: Colors.black,
+            primaryColor: Colors.pink[50],
             primaryIconTheme: IconThemeData(color: Colors.black),
             primaryTextTheme: TextTheme(
                 title: TextStyle(color: Colors.black, fontFamily: "Aveny")),
-            textTheme: TextTheme(title: TextStyle(color: Colors.black))),
+            textTheme: TextTheme(title: TextStyle(color: Colors.black))
+        ),
+
         home: Wrapper(),
         routes: {
           "/home":(context) => null,

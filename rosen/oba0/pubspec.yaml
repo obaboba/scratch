@@ -28,3 +28,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+     - assets/boba_banner.png
+     - assets/oba_pink.png
+     - assets/oba.png
+     - assets/boba_rating.png
+     - assets/boba_pic.jpeg

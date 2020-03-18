@@ -138,6 +138,15 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: new Image.asset('assets/boba_banner.png', height: 150.0, width: 300.0,),
+              ),
+            ],
+          ),
             Padding(
               padding: EdgeInsets.all(10),
               child: TextField(
@@ -162,9 +171,9 @@ class _LoginPageState extends State<LoginPage> {
                 verifyPhone();
               },
               child: Text('Verify'),
-              textColor: Colors.white,
+              textColor: Colors.black,
               elevation: 7,
-              color: Colors.blue,
+              color: Colors.pink[50],
             )
           ],
         ),
