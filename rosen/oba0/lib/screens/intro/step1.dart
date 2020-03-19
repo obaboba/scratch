@@ -44,7 +44,7 @@ class Step1 extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => step2()),
+                    MaterialPageRoute(builder: (context) => middle1()),
                   );// Navigate to second route when tapped.
                 },
                 child: Text('Next'),

@@ -142,18 +142,22 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.only(left: 10.0, right: 10),
                 child: new Image.asset('assets/boba_banner.png', height: 150.0, width: 300.0,),
               ),
             ],
           ),
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.only(left: 30, right: 30),
               child: TextField(
+                inputFormatters: <TextInputFormatter>[
+                  LengthLimitingTextInputFormatter(10),
+                  WhitelistingTextInputFormatter.digitsOnly,
+                ],
                 decoration: InputDecoration(
                     hintText: 'Enter Phone Number Eg. +910000000000'),
                 onChanged: (value) {
-                  this.phoneNo = value;
+                  this.phoneNo = '+1' + value;
                 },
               ),
             ),
@@ -164,7 +168,7 @@ class _LoginPageState extends State<LoginPage> {
             )
                 : Container()),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             RaisedButton(
               onPressed: () {
